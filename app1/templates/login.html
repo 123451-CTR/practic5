@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} Вход {% endblock %}
+{% block body %}
+<div class="text-center mb-3">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <p class="text-center fs-4">Логин</p>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Введите логин" required>
+        </div>
+        <div class="mb-3">
+            <p class="text-center fs-4">Пароль</p>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль" minlength="6" required>
+        </div>
+        <div class="text-center mb-3">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            <button type="submit" class="btn btn-success">Submit</button>
+            <a class="nav-link" href="{% url 'signup' %}" tabindex="-1" aria-disabled="true">Еще нет аккаунта? Регистрация</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Мои заявки {% endblock %}
+{% block body %}
+{% if user_req %}
+    <p class="fs-1 text-center">Мои заявки</p>
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Тема</th>
+                    <th>Описание</th>
+                    <th>Приоритет</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for req in user_req %}
+                <tr>
+                    <td>{{ req.theme }}</td>
+                    <td>{{ req.description }}</td>
+                    <td>{{ req.get_priority_display }}</td>
+                    <td>{{ req.get_status_display }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p class="text-center fs-4 mt-5">У вас пока нет заявок.</p>
+{% endif %}
+{% endblock %}

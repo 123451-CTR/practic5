@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Регистрация {% endblock %}
+{% block body %}
+<div class="center">
+    <div class="text-center mb-3">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <p class="text-center fs-4">Почта</p>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Введите почту" required>
+            </div>
+            <div class="mb-3">
+                <p class="text-center fs-4">Логин</p>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Введите логин" required>
+            </div>
+            <div class="mb-3">
+                <p class="text-center fs-4">ФИО</p>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Введите ФИО" required>
+            </div>
+            <div class="mb-3">
+                <p class="text-center fs-4">Телефон</p>
+                <input type="phone" class="form-control" id="phone" name="phone" placeholder="+7(XXX)-XXX-XX-XX" minlength="12" maxlength="20" required>
+            </div>
+            <div class="mb-3">
+                <p class="text-center fs-4">Пароль</p>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль" minlength="6" required>
+            </div>
+            <div class="mb-3">
+                <p class="text-center fs-4">Повторите пароль</p>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Повторите пароль" required>
+            </div>
+            <div class="text-center mb-3">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                <button type="submit" class="btn btn-success">Submit</button>
+                <a class="nav-link" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">Уже зарегистрированы? Вход</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

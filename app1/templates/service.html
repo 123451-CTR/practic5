@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Формирование обращения {% endblock %}
+{% block body %}
+<div class="center">
+    <p class="fs-1 text-center">Формирование обращения</p>
+    <div class="mb-3">
+        <form method="POST">
+            {% csrf_token %}
+            {% load crispy_forms_tags %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
